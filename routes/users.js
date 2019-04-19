@@ -14,7 +14,7 @@ router.post('/authenticate', async (req, res) => {
     const valid = await bcrypt.compare(req.body.password, user.password);
     if(valid) {
         const token = await jwt.sign(_.pick(user, ['_id', 'name', 'email']), 'xToolSecrete');
-        res.header('x-auth-token', token).status(200).send(_.pick(user, ['_id', 'name', 'email']))
+        res.header('x-auth-token', token).status(200).send(_.pick(user, ['_id', 'name', 'email']));
     } else {
         res.status(400).send('Password or email is invalid');
     }
