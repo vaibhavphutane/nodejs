@@ -16,7 +16,7 @@ app.use(express.json());
 // app.use(morgan('combined', {stream: morganStreamLog}));
 app.use('/api/users', users);
 
-const PORT = process.env.PORT || config.httpPort;
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, (res) => {
     console.log('Listening on 3000..');
