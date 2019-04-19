@@ -1,7 +1,10 @@
 const Joi = require('joi');
 const mongoose = require('mongoose');
+const config = require('config');
 
-mongoose.connect('mongodb+srv://xToolAdmin:xTool@cluster0-jnjyv.mongodb.net/test?retryWrites=true')
+const connectionUrl = config.get('xTool_db');
+// mongodb+srv://xToolAdmin:xTool@cluster0-jnjyv.mongodb.net/test?retryWrites=true
+mongoose.connect(connectionUrl)
         .then(res => console.log('Mongo Connected..'))
         .catch(err => console.log(err))
 
