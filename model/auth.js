@@ -1,7 +1,7 @@
 const Joi = require('joi');
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/users')
+mongoose.connect('mongodb://localhost/xTool')
         .then(res => console.log('Mongo Connected..'))
         .catch(err => console.log(err))
 
@@ -38,5 +38,15 @@ function validateAuthentication(user) {
     return Joi.validate(user, schema);
 }
 
+function validateUser(user) {
+    const schema = {
+        name: Joi.string().required(),
+        email: Joi.string().min(5).max(255).required().email(),
+        password: Joi.string().min(8).max(255).required()
+    }
+    return Joi.validate(user, schema);
+} 
+
 module.exports.validateAuth = validateAuthentication;
+module.exports.validateUser = validateUser;
 module.exports.User = User;
